@@ -1,3 +1,4 @@
+// Landing page component with typing animation effect
 'use client';
 
 import Image from "next/image";
@@ -52,8 +53,8 @@ export default function Home() {
             I&apos;m an Aspiring Full Stack Developer based in Philippines, passionate about building innovative solutions.
           </p>
           
-          <div className="space-y-4">
-            <h2 className="text-lg font-medium text-gray-300">Contact Info</h2>
+          <div className="space-y-3">
+            <h2 className="text-gray-300 text-base">Contact Info</h2>
             <div className="space-y-2">
               <p className="text-sm text-gray-500">mendozaseanmichaelandrewb2345@gmail.com</p>
               <p className="text-sm text-gray-500">09636533613</p>
