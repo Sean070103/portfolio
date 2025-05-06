@@ -28,7 +28,6 @@ export default function TechStack() {
               // Render icon with larger size by cloning with new props if possible
               typeof icon === 'object' && icon.type
                 ? (
-                  // @ts-ignore
                   React.cloneElement(icon, { size: 48 })
                 )
                 : icon
@@ -42,7 +41,6 @@ export default function TechStack() {
         <div className="flex flex-col items-center">
           {AboutIcons.mongodb && typeof AboutIcons.mongodb === 'object' && AboutIcons.mongodb.type
             ? (
-              // @ts-ignore
               React.cloneElement(AboutIcons.mongodb, { size: 48 })
             ) : AboutIcons.mongodb}
           <span className="text-xs text-gray-500 mt-1">MongoDB</span>

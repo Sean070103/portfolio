@@ -6,10 +6,17 @@ export const experiences = [
     company: "THE BLOKC",
     role: "Software Engineer Intern",
     period: "January–March 2025",
-    location: "16F E/F Burgundy Corporate Tower, 252 Sen. Gil J. Puyat Ave, Makati, 1200 Metro Manila",
+    location:
+      "16F E/F Burgundy Corporate Tower, 252 Sen. Gil J. Puyat Ave, Makati, 1200 Metro Manila",
     website: "https://theblokc.com/",
-    description: "Intern Software Engineer, Focuses on Web3 & Web2 building and planning.",
-    tech: [AboutIcons.next, AboutIcons.ts, AboutIcons.tailwind, AboutIcons.sepolia],
+    description:
+      "Intern Software Engineer, Focuses on Web3 & Web2 building and planning.",
+    tech: [
+      AboutIcons.next,
+      AboutIcons.ts,
+      AboutIcons.tailwind,
+      AboutIcons.sepolia,
+    ],
   },
   {
     company: "Creotec Inc Philippines",
@@ -31,8 +38,6 @@ export const experiences = [
   },
 ];
 
-import TechStack from "./TechStack";
-
 export default function TechStackExp() {
   return (
     <section className="mt-12">
@@ -50,7 +55,12 @@ export default function TechStackExp() {
                   <p className="text-gray-500 text-sm">{exp.location}</p>
                 )}
                 {exp.website && (
-                  <a href={exp.website} target="_blank" rel="noopener noreferrer" className="text-primary underline text-sm inline-flex items-center gap-1">
+                  <a
+                    href={exp.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline text-sm inline-flex items-center gap-1"
+                  >
                     Visit Website
                     <span className="ml-1">&#x2197;</span>
                   </a>
@@ -60,14 +70,17 @@ export default function TechStackExp() {
             </div>
             <p className="mb-4">{exp.description}</p>
             <div className="flex flex-wrap gap-2 items-center mt-2">
-              {exp.tech.length > 0 ? exp.tech.map((icon, i) => (
-                <span key={i}>{icon}</span>
-              )) : <span className="text-gray-400 text-sm">Tech stack coming soon</span>}
+              {exp.tech.length > 0 ? (
+                exp.tech.map((icon, i) => <span key={i}>{icon}</span>)
+              ) : (
+                <span className="text-gray-400 text-sm">
+                  Tech stack coming soon
+                </span>
+              )}
             </div>
           </div>
         ))}
       </div>
-
     </section>
   );
 }

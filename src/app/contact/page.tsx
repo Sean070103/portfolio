@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ContactIcons } from '../about/ContactIcons';
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", website: "", message: "" });
@@ -20,16 +21,16 @@ export default function ContactPage() {
     <main className="container mx-auto px-4 py-20 min-h-[80vh] flex flex-col md:flex-row gap-12">
       <section className="flex-1 flex flex-col justify-center">
         <h1 className="text-4xl font-bold mb-4">Contact Me</h1>
-        <h2 className="text-sm tracking-widest font-semibold mb-2 uppercase text-secondary">Let's Connect</h2>
+        <h2 className="text-sm tracking-widest font-semibold mb-2 uppercase text-secondary">Let&apos;s Connect</h2>
         <p className="mb-6 max-w-md text-gray-500">
-          Have a project in mind, want to collaborate, or just want to say hello? Fill out the form or email me directly and I'll get back to you soon!
+          Have a project in mind, want to collaborate, or just want to say hello? Fill out the form or email me directly and I&apos;ll get back to you soon!
         </p>
         <div className="mt-8 text-sm text-gray-500">
           <span className="font-semibold">OR email me at:</span>
           <br />
           <a href="mailto:mendozaseanmichaelandrewb2345@gmail.com" className="text-primary hover:underline">mendozaseanmichaelandrewb2345@gmail.com</a>
           <div className="flex gap-6 mt-6">
-            {require('../about/ContactIcons').ContactIcons.map(({ icon, label, href }) => (
+            {ContactIcons.map(({ icon, label, href }: { icon: React.ReactNode; label: string; href: string }) => (
               <a
                 key={label}
                 href={href}
@@ -48,7 +49,7 @@ export default function ContactPage() {
         {sent ? (
           <div className="p-8 card text-center">
             <h2 className="text-2xl font-bold mb-2">Thank you!</h2>
-            <p className="mb-0">Your message has been sent. I'll reply as soon as possible.</p>
+            <p className="mb-0">Your message has been sent. I&apos;ll reply as soon as possible.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 bg-card p-8 rounded-lg border">
