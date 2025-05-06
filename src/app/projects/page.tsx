@@ -5,6 +5,13 @@ import Link from "next/link";
 
 const projects = [
   {
+    title: "Fundchain",
+    description: "Fundchain is a blockchain-based fundraising platform. Explore the live demo.",
+    image: "/fundchain.jpg",
+    tech: "Next.js, Blockchain",
+    external: "https://thesis-main-master2.vercel.app/",
+  },
+  {
     title: "Base PH website",
     description:
       "Base Philippines is a dynamic community of Filipino Web3 builders, creators, and innovators, creating opportunities within the blockchain ecosystem.",

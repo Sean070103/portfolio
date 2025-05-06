@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useTheme } from "@/app/context/ThemeContext";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { FaFacebook, FaLinkedin, FaInstagram } from 'react-icons/fa6';
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
@@ -31,6 +30,7 @@ export default function Navbar() {
   const navLinks = [
     { href: "/projects", label: "Projects" },
     { href: "/about", label: "About Me" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (
@@ -80,32 +80,7 @@ export default function Navbar() {
                   ></span>
                 </Link>
               ))}
-              <button
-                ref={contactBtnRef}
-                onClick={() => setShowContact((v) => !v)}
-                className="relative group py-1 hover:text-primary transition-colors duration-300 focus:outline-none"
-              >
-                Contact
-                {/* Popover */}
-                {showContact && (
-                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 z-50 bg-background border border-border rounded-xl shadow-lg p-2 flex min-w-[320px] max-w-[90vw] items-center" style={{top: '100%'}}>
-                    <div className="flex gap-3 items-center mx-auto">
-                      <a href="https://www.facebook.com/profile.php?id=100008903117894" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
-                        <FaFacebook className="text-4xl text-blue-600 group-hover:scale-110 transition" />
-                        <span className="mt-1 text-xs">Facebook</span>
-                      </a>
-                      <a href="https://www.linkedin.com/in/sean-michael-andrew-mendoza-213223324/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
-                        <FaLinkedin className="text-4xl text-blue-700 group-hover:scale-110 transition" />
-                        <span className="mt-1 text-xs">LinkedIn</span>
-                      </a>
-                      <a href="https://www.instagram.com/mndz_sn/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
-                        <FaInstagram className="text-4xl text-pink-500 group-hover:scale-110 transition" />
-                        <span className="mt-1 text-xs">Instagram</span>
-                      </a>
-                    </div>
-                  </div>
-                )}
-              </button>
+
             </div>
 
             <div className="flex items-center gap-4">

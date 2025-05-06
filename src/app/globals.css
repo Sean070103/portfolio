@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --card: #f4f4f5;
-  --card-foreground: #27272a;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  --secondary: #10b981;
-  --accent: #8b5cf6;
-  --border: #e5e7eb;
+  --background: #fff;
+  --foreground: #111;
+  --card: #fff;
+  --card-foreground: #111;
+  --primary: #111;
+  --primary-foreground: #fff;
+  --border: #e5e5e5;
+  --accent: #111;
+  --secondary: #bbb;
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --card: #1a1a1a;
-  --card-foreground: #ededed;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  --secondary: #10b981;
-  --accent: #8b5cf6;
-  --border: #27272a;
+  --background: #111;
+  --foreground: #fff;
+  --card: #181818;
+  --card-foreground: #fff;
+  --primary: #fff;
+  --primary-foreground: #111;
+  --border: #444;
+  --accent: #fff;
+  --secondary: #888;
 }
 
 @theme inline {
@@ -40,19 +40,28 @@ body {
   font-family: var(--font-sans);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   line-height: 1.2;
 }
 
+a, u, .underline, h1, h2, h3, h4, h5, h6 {
+  text-decoration: none !important;
+}
+
 a {
-  color: var(--foreground);
-  text-decoration: none;
+  color: var(--primary);
   transition: all 0.2s ease;
 }
 
 a:hover {
-  color: var(--primary);
+  text-decoration: underline;
+  opacity: 0.7;
 }
 
 .container {
@@ -112,4 +121,18 @@ html {
 .skill-card:hover {
   border-color: var(--primary);
   transform: translateY(-2px);
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
 }

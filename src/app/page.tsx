@@ -64,12 +64,57 @@ export default function Home() {
 
         <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] bg-card rounded-full overflow-hidden mb-8 md:mb-0">
           <Image
-            src="/bebe.jpg"
+            src="/seanie.png"
             alt="Sean Michael Andrew B. Mendoza"
             fill
             className="object-cover"
             priority
           />
+        </div>
+      </section>
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-4 text-center">My NFTs</h2>
+        <div className="flex flex-wrap justify-center gap-8">
+          <div className="w-40 h-40 bg-card rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+            <Image
+              src="/nft.png"
+              alt="My NFT"
+              width={160}
+              height={160}
+              className="object-cover w-full h-full"
+              priority={false}
+            />
+          </div>
+          <div className="w-40 h-40 bg-card rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+            <Image
+              src="/frog.png"
+              alt="My Frog NFT"
+              width={160}
+              height={160}
+              className="object-cover w-full h-full"
+              priority={false}
+            />
+          </div>
+          <div className="w-40 h-40 bg-card rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+            <Image
+              src="/naruto.png"
+              alt="Naruto NFT"
+              width={160}
+              height={160}
+              className="object-cover w-full h-full"
+              priority={false}
+            />
+          </div>
+          <div className="w-40 h-40 bg-card rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+            <Image
+              src="/goku.png"
+              alt="Goku NFT"
+              width={160}
+              height={160}
+              className="object-cover w-full h-full"
+              priority={false}
+            />
+          </div>
         </div>
       </section>
     </main>

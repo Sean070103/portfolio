@@ -7,6 +7,9 @@ const TITLES = ["Full Stack Developer", "Web3 Developer", "Software Engineer"];
 const TYPING_SPEED = 80;
 const PAUSE = 1200;
 
+import TechStackExp from "./TechStackExp";
+import TechStack from "./TechStack";
+
 export default function AboutPage() {
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
@@ -91,7 +94,7 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <button
                 onClick={handleScheduleCall}
-                className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                className="px-6 py-2 bg-white text-black border border-black rounded-lg hover:bg-black hover:text-white transition-colors font-semibold shadow-sm"
               >
                 Schedule a Call
               </button>
@@ -111,56 +114,66 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <section className="mt-12">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <span className="border-b-2 border-primary pb-1">Education</span>
-        </h2>
-        <div className="space-y-6">
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary mt-2"></div>
-            <div>
-              <h3 className="text-xl font-semibold mb-1">
-                University of Cabuyao (UC-PNC)
-              </h3>
-              <p className="text-gray-400">
-                Bachelor of Science in Computer Science
-              </p>
-              <p className="text-sm text-gray-500">2021–2025</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary mt-2"></div>
-            <div>
-              <h3 className="text-xl font-semibold mb-1">San Pablo Colleges</h3>
-              <p className="text-gray-400">Secondary Education</p>
-              <p className="text-sm text-gray-500">2019–2021</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary mt-2"></div>
-            <div>
-              <h3 className="text-xl font-semibold mb-1">
-                Col. Lauro D. Dizon Memorial National High School
-              </h3>
-              <p className="text-gray-400">Secondary Education</p>
-              <p className="text-sm text-gray-500">2019–2021</p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary mt-2"></div>
-            <div>
-              <h3 className="text-xl font-semibold mb-1">
-                San Lucas 1 Elementary School
-              </h3>
-              <p className="text-gray-400">Elementary Education</p>
-              <p className="text-sm text-gray-500">2009–2015</p>
-            </div>
-          </div>
+      <div className="flex flex-col md:flex-row gap-12 mt-12">
+        {/* Experience (left) */}
+        <div className="flex-1">
+          <TechStackExp />
         </div>
-      </section>
+        {/* Education (right) */}
+        <aside className="w-full md:w-1/3">
+          <section>
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+              <span className="border-b-2 border-primary pb-1">Education</span>
+            </h2>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary mt-2"></div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">
+                    University of Cabuyao (UC-PNC)
+                  </h3>
+                  <p className="text-gray-400">
+                    Bachelor of Science in Computer Science
+                  </p>
+                  <p className="text-sm text-gray-500">2021–2025</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary mt-2"></div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">San Pablo Colleges</h3>
+                  <p className="text-gray-400">Secondary Education</p>
+                  <p className="text-sm text-gray-500">2019–2021</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary mt-2"></div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">
+                    Col. Lauro D. Dizon Memorial National High School
+                  </h3>
+                  <p className="text-gray-400">Secondary Education</p>
+                  <p className="text-sm text-gray-500">2019–2021</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary mt-2"></div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">
+                    San Lucas 1 Elementary School
+                  </h3>
+                  <p className="text-gray-400">Elementary Education</p>
+                  <p className="text-sm text-gray-500">2009–2015</p>
+                </div>
+              </div>
+            </div>
+            {/* Tech Stack at the bottom of education */}
+            <div className="mt-12">
+              <TechStack />
+            </div>
+          </section>
+        </aside>
+      </div>
     </main>
   );
 }
