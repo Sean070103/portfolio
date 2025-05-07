@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
 import ClientLayout from "@/components/ClientLayout";
-import Stickman from "@/components/Stickman";
 
 const font = Inter({
   subsets: ["latin"],
@@ -23,10 +22,7 @@ export default function RootLayout({
     <html lang="en" className={font.className}>
       <body>
         <ThemeProvider>
-          <ClientLayout>
-            <Stickman />
-            {children}
-          </ClientLayout>
+          <ClientLayout>{children}</ClientLayout>
         </ThemeProvider>
       </body>
     </html>
