@@ -2,26 +2,30 @@
 
 :root {
   --background: #fff;
-  --foreground: #111;
+  --foreground: #333;
   --card: #fff;
-  --card-foreground: #111;
-  --primary: #111;
+  --card-foreground: #333;
+  --primary: #333;
   --primary-foreground: #fff;
   --border: #e5e5e5;
-  --accent: #111;
+  --accent: #333;
   --secondary: #bbb;
+  --muted: #666;
+  --muted-foreground: #666;
 }
 
 .dark {
-  --background: #111;
-  --foreground: #fff;
-  --card: #181818;
-  --card-foreground: #fff;
+  --background: #121212;
+  --foreground: #eee;
+  --card: #1e1e1e;
+  --card-foreground: #eee;
   --primary: #fff;
-  --primary-foreground: #111;
-  --border: #444;
-  --accent: #fff;
+  --primary-foreground: #121212;
+  --border: #333;
+  --accent: #eee;
   --secondary: #888;
+  --muted: #888;
+  --muted-foreground: #888;
 }
 
 @theme inline {
@@ -135,4 +139,355 @@ html {
 
 .animate-blink {
   animation: blink 1s infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Star twinkle animation */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* Stickman animations */
+.stickman {
+  position: fixed;
+  width: 40px;
+  height: 50px;
+  z-index: 50;
+  cursor: grab;
+  transition: transform 0.1s ease;
+}
+
+.stickman .message {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card);
+  color: var(--foreground);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  white-space: nowrap;
+  animation: pop-in 0.3s ease-out;
+  border: 1px solid var(--border);
+}
+
+.stickman .message::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--card);
+}
+
+.stickman.dragging {
+  cursor: grabbing;
+  scale: 1.1;
+}
+
+.stickman.thrown {
+  transition: none;
+}
+
+.stickman::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: var(--foreground);
+  transform-origin: top;
+  transition: all 0.3s ease;
+}
+
+.stickman::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--foreground);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.stickman .legs::before,
+.stickman .legs::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: var(--foreground);
+  transform-origin: top;
+  transition: all 0.3s ease;
+}
+
+.stickman .arms::before,
+.stickman .arms::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  width: 2px;
+  height: 15px;
+  background: var(--foreground);
+  transform-origin: top;
+  transition: all 0.3s ease;
+}
+
+/* Walking animation - Park walking pace */
+.stickman.walk .legs::before {
+  animation: left-leg 2s ease-in-out infinite; /* Increased to 2s for slower walking */
+}
+
+.stickman.walk .legs::after {
+  animation: right-leg 2s ease-in-out infinite; /* Increased to 2s for slower walking */
+}
+
+.stickman.walk .arms::before {
+  animation: left-arm 2s ease-in-out infinite; /* Increased to 2s for slower walking */
+}
+
+.stickman.walk .arms::after {
+  animation: right-arm 2s ease-in-out infinite; /* Increased to 2s for slower walking */
+}
+
+/* Relaxed walking animations */
+@keyframes left-leg {
+  0%, 100% {
+    transform: translateX(-50%) rotate(-15deg); /* Reduced angle for more relaxed movement */
+  }
+  50% {
+    transform: translateX(-50%) rotate(15deg);
+  }
+}
+
+@keyframes right-leg {
+  0%, 100% {
+    transform: translateX(-50%) rotate(15deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(-15deg);
+  }
+}
+
+@keyframes left-arm {
+  0%, 100% {
+    transform: translateX(-50%) rotate(20deg); /* Reduced arm swing */
+  }
+  50% {
+    transform: translateX(-50%) rotate(-5deg);
+  }
+}
+
+@keyframes right-arm {
+  0%, 100% {
+    transform: translateX(-50%) rotate(-5deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(20deg);
+  }
+}
+
+/* Dancing animation */
+.stickman.dance {
+  animation: dance 0.5s ease-in-out infinite;
+}
+
+.stickman.dance .legs::before {
+  animation: dance-leg 0.5s ease-in-out infinite;
+}
+
+.stickman.dance .legs::after {
+  animation: dance-leg 0.5s ease-in-out infinite reverse;
+}
+
+.stickman.dance .arms::before {
+  animation: dance-arm 0.5s ease-in-out infinite;
+}
+
+.stickman.dance .arms::after {
+  animation: dance-arm 0.5s ease-in-out infinite reverse;
+}
+
+/* Sitting animation */
+.stickman.sit {
+  height: 40px;
+}
+
+.stickman.sit::before {
+  height: 15px;
+  transform: translateX(-50%) rotate(20deg);
+}
+
+.stickman.sit .legs::before {
+  height: 15px;
+  transform: translateX(-50%) rotate(90deg);
+  top: 25px;
+}
+
+.stickman.sit .legs::after {
+  height: 15px;
+  transform: translateX(-50%) rotate(-90deg);
+  top: 25px;
+}
+
+.stickman.sit .arms::before {
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.stickman.sit .arms::after {
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* Waving animation */
+.stickman.wave .arms::before {
+  animation: wave-arm 0.5s ease-in-out infinite;
+}
+
+/* Jumping animation */
+.stickman.jump {
+  animation: jump 0.5s ease-in-out;
+}
+
+.stickman.jump .legs::before,
+.stickman.jump .legs::after {
+  height: 15px;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes dance {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(-5deg);
+  }
+}
+
+@keyframes dance-leg {
+  0%, 100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(45deg);
+  }
+}
+
+@keyframes dance-arm {
+  0%, 100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(90deg);
+  }
+}
+
+@keyframes wave-arm {
+  0%, 100% {
+    transform: translateX(-50%) rotate(-20deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(-80deg);
+  }
+}
+
+@keyframes jump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Make text elements interactive */
+h1, h2, p {
+  position: relative;
+  z-index: 1;
+}
+
+.interactive-text {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.interactive-text:hover {
+  background: var(--card);
+  border-radius: 4px;
 }
