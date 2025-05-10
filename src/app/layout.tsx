@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en" className={font.className}>
       <body>
         <ThemeProvider>
-          <ClientLayout>{children}</ClientLayout>
+          <ClientLayout>  {children}</ClientLayout>
         </ThemeProvider>
       </body>
     </html>

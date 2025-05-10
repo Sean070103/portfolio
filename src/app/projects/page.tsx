@@ -65,6 +65,26 @@ const projects = [
       }
     ]
   },
+  {
+    title: "Components",
+    description: "A modern web components library built with Next.js and Tailwind CSS, featuring beautiful, responsive, and accessible UI components.",
+    image: "/components.jpg",
+    url: "https://components-six-sigma.vercel.app/",
+    tech: [
+      {
+        icon: <SiNextdotjs className="text-muted-foreground hover:text-primary transition-colors" size={24} />,
+        name: "Next.js"
+      },
+      {
+        icon: <FaReact className="text-muted-foreground hover:text-primary transition-colors" size={24} />,
+        name: "React"
+      },
+      {
+        icon: <SiTailwindcss className="text-muted-foreground hover:text-primary transition-colors" size={24} />,
+        name: "Tailwind CSS"
+      }
+    ]
+  },
 ];
 
 export default function ProjectsPage() {
@@ -73,7 +93,13 @@ export default function ProjectsPage() {
       <h1 className="text-4xl font-bold mb-12">Projects</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, idx) => (
-          <div key={idx} className="card group">
+          <a 
+            key={idx} 
+            href={project.url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="card group block"
+          >
             <div className="relative w-full h-48 mb-4 overflow-hidden rounded-lg">
               <Image
                 src={project.image}
@@ -91,7 +117,7 @@ export default function ProjectsPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </main>

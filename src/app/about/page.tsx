@@ -14,7 +14,19 @@ export default function AboutPage() {
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [typing, setTyping] = useState(true);
-  
+  const [, setShowCopied] = useState(false);
+
+  const handleEmail = async () => {
+    const email = "mendozaseanmichaelandrewb2345@gmail.com";
+
+    try {
+      await navigator.clipboard.writeText(email);
+      setShowCopied(true);
+      setTimeout(() => setShowCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${email}`;
+    }
+  };
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -75,7 +87,6 @@ export default function AboutPage() {
               use. My goal is to convey your message and identity in the most
               creative way.
             </p>
-
           </div>
         </div>
       </div>
@@ -107,7 +118,9 @@ export default function AboutPage() {
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary mt-2"></div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-1">San Pablo Colleges</h3>
+                  <h3 className="text-xl font-semibold mb-1">
+                    San Pablo Colleges
+                  </h3>
                   <p className="text-gray-400">Secondary Education</p>
                   <p className="text-sm text-gray-500">2019–2021</p>
                 </div>
