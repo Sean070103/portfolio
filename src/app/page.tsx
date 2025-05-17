@@ -4,6 +4,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useTheme } from "./context/ThemeContext";
+import Link from "next/link";
 
 const TITLES = ["Full Stack Developer", "Web3 Developer", "Software Engineer"];
 const TYPING_SPEED = 80;
@@ -60,7 +61,8 @@ export default function Home() {
   }, [displayed, typing, titleIndex]);
 
   return (
-    <main className="min-h-screen p-4 sm:p-6 md:p-8 relative">
+    <main className="min-h-screen relative">
+      {/* Background stars */}
       {theme === 'dark' && (
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
           {STARS.map((star, i) => (
@@ -78,77 +80,56 @@ export default function Home() {
         </div>
       )}
 
-      <section className="flex flex-col-reverse md:flex-row justify-between items-center mb-20 relative">
-        <div className="w-full md:w-1/2 text-center md:text-left">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 stickman-target">
-            Hello, I&apos;m Sean <span role="img" aria-label="wave">👋</span>
-          </h1>
-          <p className="text-xl sm:text-2xl mb-4 font-mono stickman-target">
-            {displayed}
-            <span className="inline-block w-2 h-6 bg-primary align-bottom animate-pulse ml-1" style={{borderRadius:2}}></span>
-          </p>
-          <p className="text-base sm:text-lg text-gray-400 mb-8 stickman-target">
-            I&apos;m an Aspiring Full Stack Developer based in Philippines, passionate about building innovative solutions.
-          </p>
-        </div>
-
-        <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] bg-card rounded-full overflow-hidden mb-8 md:mb-0">
-          <Image
-            src="/seanie.png"
-            alt="Sean Michael Andrew B. Mendoza"
-            fill
-            className="object-cover"
-            priority
-          />
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 relative bg-gradient-to-br from-primary/5 via-background to-accent/5">
+        <div className="container mx-auto">
+          <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-12">
+            <div className="w-full md:w-1/2 text-center md:text-left space-y-6">
+              <div className="space-y-4">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold stickman-target bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
+                  Hello, I&apos;m Sean
+                </h1>
+                <p className="text-xl sm:text-2xl mb-4 font-mono stickman-target">
+                  {displayed}
+                  <span className="inline-block w-1 h-7 align-bottom animate-pulse ml-1 bg-primary rounded" style={{verticalAlign:'-0.2em'}}></span>
+                </p>
+                <p className="text-base sm:text-lg text-muted-foreground mb-8 stickman-target">
+                  I&apos;m an Aspiring Full Stack Developer based in Philippines, passionate about building innovative solutions.
+                </p>
+              </div>
+            </div>
+            <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] bg-card rounded-full overflow-hidden mb-8 md:mb-0 border-4 border-primary/20 shadow-lg">
+              <Image
+                src="/seanie.png"
+                alt="Sean Michael Andrew B. Mendoza"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="mt-12">
-        <h2 className="text-2xl font-bold mb-4 text-center stickman-target">My NFTs</h2>
-        <div className="flex flex-wrap justify-center gap-8">
-          <div className="w-40 h-40 bg-card rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
-            <Image
-              src="/nft.png"
-              alt="My NFT"
-              width={160}
-              height={160}
-              className="object-cover w-full h-full"
-              priority={false}
-            />
-            <div className="text-center mt-2 stickman-target">NFT #1</div>
-          </div>
-          <div className="w-40 h-40 bg-card rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
-            <Image
-              src="/frog.png"
-              alt="My Frog NFT"
-              width={160}
-              height={160}
-              className="object-cover w-full h-full"
-              priority={false}
-            />
-            <div className="text-center mt-2 stickman-target">Frog NFT</div>
-          </div>
-          <div className="w-40 h-40 bg-card rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
-            <Image
-              src="/naruto.png"
-              alt="Naruto NFT"
-              width={160}
-              height={160}
-              className="object-cover w-full h-full"
-              priority={false}
-            />
-            <div className="text-center mt-2 stickman-target">Naruto NFT</div>
-          </div>
-          <div className="w-40 h-40 bg-card rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
-            <Image
-              src="/goku.png"
-              alt="Goku NFT"
-              width={160}
-              height={160}
-              className="object-cover w-full h-full"
-              priority={false}
-            />
-            <div className="text-center mt-2 stickman-target">Goku NFT</div>
+      {/* Quick Links Section */}
+      <section className="py-20 bg-card/50">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="card hover:scale-105 transition-transform">
+              <h3 className="text-xl font-bold mb-2">Projects</h3>
+              <p className="text-muted-foreground mb-4">Check out my latest projects and work</p>
+              <Link href="/projects" className="text-primary hover:underline">View Projects →</Link>
+            </div>
+            <div className="card hover:scale-105 transition-transform">
+              <h3 className="text-xl font-bold mb-2">About Me</h3>
+              <p className="text-muted-foreground mb-4">Learn more about my journey and skills</p>
+              <Link href="/about" className="text-primary hover:underline">About Me →</Link>
+            </div>
+            <div className="card hover:scale-105 transition-transform">
+              <h3 className="text-xl font-bold mb-2">Contact</h3>
+              <p className="text-muted-foreground mb-4">Let&apos;s connect and discuss opportunities</p>
+              <Link href="/contact" className="text-primary hover:underline">Get in Touch →</Link>
+            </div>
           </div>
         </div>
       </section>

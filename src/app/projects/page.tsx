@@ -10,6 +10,7 @@ const projects = [
     title: "Fundchain",
     description: "Fundchain is a blockchain-based fundraising platform. Explore the live demo.",
     image: "/fundchain.jpg",
+    url: "https://fundchain.vercel.app/",
     tech: [
       {
         icon: <SiNextdotjs className="text-muted-foreground hover:text-primary transition-colors" size={24} />,
@@ -30,6 +31,7 @@ const projects = [
     description:
       "Base Philippines is a dynamic community of Filipino Web3 builders, creators, and innovators, creating opportunities within the blockchain ecosystem.",
     image: "/Base.jpg",
+    url: "https://basepilipinas-website-base-2025.vercel.app/",
     tech: [
       {
         icon: <SiNextdotjs className="text-muted-foreground hover:text-primary transition-colors" size={24} />,
@@ -50,6 +52,7 @@ const projects = [
     description:
       "A project for detecting and analyzing human posture using AI. Click to learn more.",
     image: "/projects/test.jpg",
+    url: "/projects/posture-detection",
     tech: [
       {
         icon: <FaPython className="text-muted-foreground hover:text-primary transition-colors" size={24} />,
@@ -90,33 +93,50 @@ const projects = [
 export default function ProjectsPage() {
   return (
     <main className="container mx-auto px-4 py-20">
-      <h1 className="text-4xl font-bold mb-12">Projects</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-3xl mx-auto text-center mb-16">
+        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">Projects</h1>
+        <p className="text-muted-foreground text-lg">
+          Here are some of my recent projects. Each one represents a unique challenge and learning experience.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, idx) => (
           <a 
             key={idx} 
             href={project.url} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="card group block"
+            target={project.url.startsWith('http') ? "_blank" : undefined}
+            rel={project.url.startsWith('http') ? "noopener noreferrer" : undefined}
+            className="group relative overflow-hidden rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300"
           >
-            <div className="relative w-full h-48 mb-4 overflow-hidden rounded-lg">
+            <div className="relative w-full h-48 overflow-hidden">
               <Image
                 src={project.image}
                 alt={project.title}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
-            <p className="text-muted-foreground mb-4">{project.description}</p>
-            <div className="flex items-center gap-4">
-              {project.tech.map((tech, index) => (
-                <div key={index} className="tooltip" data-tip={tech.name}>
-                  {tech.icon}
-                </div>
-              ))}
+            
+            <div className="p-6">
+              <h2 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">{project.title}</h2>
+              <p className="text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
+              
+              <div className="flex items-center gap-4">
+                {project.tech.map((tech, index) => (
+                  <div 
+                    key={index} 
+                    className="tooltip" 
+                    data-tip={tech.name}
+                  >
+                    {tech.icon}
+                  </div>
+                ))}
+              </div>
             </div>
+
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary/0 group-hover:bg-primary transition-colors duration-300" />
           </a>
         ))}
       </div>
