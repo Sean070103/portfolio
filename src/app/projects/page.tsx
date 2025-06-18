@@ -191,6 +191,26 @@ const projects = [
       },
     ],
   },
+  {
+    title: "Master Base Blockchain",
+    description: "Learn how to use Base, the secure and low-cost Ethereum L2 built by Coinbase. From wallet setup to your first transaction, we've got you covered.",
+    image: "/basee.png",
+    url: "https://base-ashy.vercel.app/",
+    tech: [
+      {
+        icon: <SiNextdotjs className="text-muted-foreground hover:text-primary transition-colors" size={24} />,
+        name: "Next.js"
+      },
+      {
+        icon: <FaReact className="text-muted-foreground hover:text-primary transition-colors" size={24} />,
+        name: "React"
+      },
+      {
+        icon: <SiTailwindcss className="text-muted-foreground hover:text-primary transition-colors" size={24} />,
+        name: "Tailwind CSS"
+      }
+    ]
+  },
 ];
 
 export default function ProjectsPage() {
@@ -223,11 +243,6 @@ export default function ProjectsPage() {
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium">
-                  View Project →
-                </span>
-              </div>
             </div>
 
             <div className="p-6">
