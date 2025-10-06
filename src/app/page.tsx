@@ -75,6 +75,7 @@ export default function Home() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    const context: CanvasRenderingContext2D = ctx;
 
     let width = (canvas.width = canvas.offsetWidth);
     let height = (canvas.height = canvas.offsetHeight);
@@ -99,7 +100,7 @@ export default function Home() {
     }
 
     function clearCanvas() {
-      ctx.clearRect(0, 0, width, height);
+      context.clearRect(0, 0, width, height);
     }
 
     function draw() {
@@ -110,35 +111,35 @@ export default function Home() {
 
       const fontSize = getFontSize();
       // Trail fade
-      ctx.fillStyle = theme === 'dark' ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)';
-      ctx.fillRect(0, 0, width, height);
+      context.fillStyle = theme === 'dark' ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)';
+      context.fillRect(0, 0, width, height);
 
       // Color and opacity
       const emerald = theme === 'dark' ? '#10b981' : '#334155';
       const baseAlpha = theme === 'dark' ? 0.65 : 0.35;
-      ctx.font = `${fontSize}px monospace`;
+      context.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
         const x = i * fontSize;
         const y = drops[i] * fontSize;
 
         // Head glow
-        ctx.globalAlpha = baseAlpha + 0.2;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = emerald;
-        ctx.fillStyle = emerald;
-        ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y);
+        context.globalAlpha = baseAlpha + 0.2;
+        context.shadowBlur = 8;
+        context.shadowColor = emerald;
+        context.fillStyle = emerald;
+        context.fillText(chars[Math.floor(Math.random() * chars.length)], x, y);
 
         // Trail glyph (less bright)
-        ctx.globalAlpha = baseAlpha;
-        ctx.shadowBlur = 0;
+        context.globalAlpha = baseAlpha;
+        context.shadowBlur = 0;
 
         // reset drop randomly for infinite rain
         if (y > height && Math.random() > 0.975) drops[i] = 0;
         drops[i]++;
       }
 
-      ctx.globalAlpha = 1;
+      context.globalAlpha = 1;
       matrixAnimRef.current = requestAnimationFrame(draw);
     }
 
@@ -201,7 +202,7 @@ export default function Home() {
                   Hello, I&apos;m Sean
                 </h1>
                 <p className="text-base sm:text-lg text-muted-foreground mb-8 stickman-target">
-                  I&apos;m an Aspiring Full Stack Developer based in Philippines, passionate about building innovative solutions.
+                  I&apos;m an aspiring Full Stack Developer based in the Philippines, passionate about building innovative solutions.
                 </p>
               </div>
             </div>
