@@ -73,8 +73,8 @@ export default function AboutPage() {
                 Tailwind CSS. I have a versatile skill set that bridges design and
                 development, allowing me to create dynamic, responsive, and
                 visually appealing web applications.
-              </p>
-              <p className="text-lg">
+            </p>
+            <p className="text-lg">
                 My job is to build your website to be functional and user-friendly
                 yet attractive. Moreover, I add a personal touch to your product
                 and make sure that the website catches attention and is easy to
@@ -94,9 +94,9 @@ export default function AboutPage() {
         {/* Education (right) */}
         <div className="lg:col-span-1">
           <section className="card hover:shadow-lg transition-shadow duration-300">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
               <span className="border-b-2 border-primary pb-1">Education</span>
-            </h2>
+        </h2>
             <div className="space-y-6">
               <div className="flex items-start gap-4 group">
                 <div className="flex-shrink-0 w-3 h-3 rounded-full bg-primary mt-2 group-hover:scale-150 transition-transform"></div>
@@ -151,5 +151,5 @@ export default function AboutPage() {
       </div>
     </main>
   );
-}
+} 
 

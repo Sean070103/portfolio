@@ -2,7 +2,7 @@
 'use client';
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "./context/ThemeContext";
 import Link from "next/link";
 
@@ -34,6 +34,15 @@ export default function Home() {
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [typing, setTyping] = useState(true);
+  const matrixCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const matrixAnimRef = useRef<number | null>(null);
+  const [fxEnabled, setFxEnabled] = useState(true);
+
+  // Respect reduced motion
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (media.matches) setFxEnabled(false);
+  }, []);
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -60,6 +69,91 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [displayed, typing, titleIndex]);
 
+  // Matrix background animation
+  useEffect(() => {
+    const canvas = matrixCanvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = (canvas.width = canvas.offsetWidth);
+    let height = (canvas.height = canvas.offsetHeight);
+
+    const onResize = () => {
+      width = canvas.width = canvas.offsetWidth;
+      height = canvas.height = canvas.offsetHeight;
+      initDrops();
+    };
+    window.addEventListener('resize', onResize);
+
+    const chars = 'アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const baseFont = 14; // px
+    const getFontSize = () => (width < 768 ? baseFont * 1.15 : baseFont);
+
+    let columns = Math.floor(width / getFontSize());
+    let drops: number[] = new Array(columns).fill(0).map(() => Math.random() * -100);
+
+    function initDrops() {
+      columns = Math.floor(width / getFontSize());
+      drops = new Array(columns).fill(0).map(() => Math.random() * -100);
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, width, height);
+    }
+
+    function draw() {
+      if (!fxEnabled) {
+        clearCanvas();
+        return; // stop until re-enabled
+      }
+
+      const fontSize = getFontSize();
+      // Trail fade
+      ctx.fillStyle = theme === 'dark' ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)';
+      ctx.fillRect(0, 0, width, height);
+
+      // Color and opacity
+      const emerald = theme === 'dark' ? '#10b981' : '#334155';
+      const baseAlpha = theme === 'dark' ? 0.65 : 0.35;
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        // Head glow
+        ctx.globalAlpha = baseAlpha + 0.2;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = emerald;
+        ctx.fillStyle = emerald;
+        ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y);
+
+        // Trail glyph (less bright)
+        ctx.globalAlpha = baseAlpha;
+        ctx.shadowBlur = 0;
+
+        // reset drop randomly for infinite rain
+        if (y > height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+
+      ctx.globalAlpha = 1;
+      matrixAnimRef.current = requestAnimationFrame(draw);
+    }
+
+    if (fxEnabled) {
+      draw();
+    } else {
+      clearCanvas();
+    }
+
+    return () => {
+      if (matrixAnimRef.current) cancelAnimationFrame(matrixAnimRef.current);
+      window.removeEventListener('resize', onResize);
+    };
+  }, [theme, fxEnabled]);
+
   return (
     <main className="min-h-screen relative">
       {/* Background stars */}
@@ -82,6 +176,23 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 relative bg-gradient-to-br from-primary/5 via-background to-accent/5">
+        {/* matrix canvas background */}
+        <div className="absolute inset-0 -z-30">
+          <canvas ref={matrixCanvasRef} className="h-full w-full" />
+        </div>
+        {/* Remove static code overlay for cleanliness */}
+        {/* centered radial orb */}
+        <div className="pointer-events-none absolute -z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-80 w-80 rounded-full bg-primary/20 blur-3xl opacity-40" />
+
+        {/* FX Toggle */}
+        <button
+          onClick={() => setFxEnabled((v) => !v)}
+          className="absolute right-4 top-4 z-10 rounded-full border border-primary/30 bg-background/60 px-3 py-1 text-xs backdrop-blur hover:bg-background/80"
+          aria-label="Toggle background effects"
+        >
+          {fxEnabled ? 'FX: On' : 'FX: Off'}
+        </button>
+
         <div className="container mx-auto">
           <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-12">
             <div className="w-full md:w-1/2 text-center md:text-left space-y-6">
@@ -89,23 +200,34 @@ export default function Home() {
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold stickman-target bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
                   Hello, I&apos;m Sean
                 </h1>
-                <p className="text-xl sm:text-2xl mb-4 font-mono stickman-target">
-                  {displayed}
-                  <span className="inline-block w-1 h-7 align-bottom animate-pulse ml-1 bg-primary rounded" style={{verticalAlign:'-0.2em'}}></span>
-                </p>
                 <p className="text-base sm:text-lg text-muted-foreground mb-8 stickman-target">
                   I&apos;m an Aspiring Full Stack Developer based in Philippines, passionate about building innovative solutions.
                 </p>
               </div>
             </div>
-            <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] bg-card rounded-full overflow-hidden mb-8 md:mb-0 border-4 border-primary/20 shadow-lg">
-              <Image
-                src="/seanie.png"
-                alt="Sean Michael Andrew B. Mendoza"
-                fill
-                className="object-cover"
-                priority
-              />
+            <div className="flex flex-col items-center">
+              <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] mx-auto">
+                {/* glowing orb layers centered */}
+                <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-tr from-primary/40 via-primary/10 to-transparent blur-2xl opacity-60" />
+                <div className="pointer-events-none absolute inset-0 rounded-full bg-primary/20 blur-xl" />
+                <div className="pointer-events-none absolute inset-0 rounded-full ring-[1px] md:ring-2 ring-primary/30 animate-pulse" />
+                <div className="relative bg-card rounded-full overflow-hidden border-4 border-primary/20 shadow-lg w-full h-full">
+                  <Image
+                    src="/seanie.png"
+                    alt="Sean Michael Andrew B. Mendoza"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                {/* small orbiting dot */}
+                <span className="absolute -right-3 top-1/2 -translate-y-1/2 h-3 w-3 rounded-full bg-primary animate-ping" />
+              </div>
+              {/* typing line below the orb */}
+              <p className="mt-6 text-lg sm:text-xl md:text-2xl font-mono text-center w-[280px] sm:w-[340px] md:w-[400px]">
+                {displayed}
+                <span className="inline-block w-0.5 sm:w-1 h-7 align-bottom animate-pulse ml-1 bg-primary rounded" style={{ verticalAlign: '-0.2em' }}></span>
+              </p>
             </div>
           </div>
         </div>
