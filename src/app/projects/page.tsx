@@ -40,6 +40,30 @@ const projects: Project[] = [
     ],
   },
   {
+    title: "Tabuko Energy Network",
+    description:
+      "Corporate site for Tabuko Energy Network Corp., covering energy-generation partners, industrial products, and service offerings from installation to maintenance.",
+    image: "/tabuko.png",
+    url: "https://tabuko-website-wmxu.vercel.app/",
+    tech: [
+      { icon: <SiNextdotjs className="text-muted-foreground hover:text-primary transition-colors" size={24} />, name: "Next.js" },
+      { icon: <FaReact className="text-muted-foreground hover:text-primary transition-colors" size={24} />, name: "React" },
+      { icon: <SiTailwindcss className="text-muted-foreground hover:text-primary transition-colors" size={24} />, name: "Tailwind CSS" },
+    ],
+  },
+  {
+    title: "Filipino Web3 Hub",
+    description:
+      "Landing experience for Filipino Web3 highlighting its mission, Bayanihan-driven values, builder community, and featured core team members.",
+    image: "/fw3.png",
+    url: "https://filipinoweb3-beta.vercel.app/#home",
+    tech: [
+      { icon: <SiNextdotjs className="text-muted-foreground hover:text-primary transition-colors" size={24} />, name: "Next.js" },
+      { icon: <FaReact className="text-muted-foreground hover:text-primary transition-colors" size={24} />, name: "React" },
+      { icon: <SiTailwindcss className="text-muted-foreground hover:text-primary transition-colors" size={24} />, name: "Tailwind CSS" },
+    ],
+  },
+  {
     title: "Posture Detection",
     description: "A project for detecting and analyzing human posture using AI. Click to learn more.",
     image: "/projects/test.jpg",

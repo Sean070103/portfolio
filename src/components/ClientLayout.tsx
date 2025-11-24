@@ -1,4 +1,4 @@
-'use client';
+ 'use client';
 
 import { ThemeProvider } from "@/app/context/ThemeContext";
 import Navbar from "./Navbar";
