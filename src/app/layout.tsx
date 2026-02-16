@@ -1,16 +1,29 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
 import ClientLayout from "@/components/ClientLayout";
 
-const font = Inter({
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
 });
 
 export const metadata: Metadata = {
-  title: "Sean Michael Andrew B. Mendoza",
-  description: "Portfolio website of Sean Michael Andrew B. Mendoza",
+  title: "Sean Michael Andrew B. Mendoza | Full Stack Developer",
+  description: "Portfolio website of Sean Michael Andrew B. Mendoza - Full Stack Developer, Web3 Developer, and Software Engineer based in the Philippines.",
+  keywords: ["Full Stack Developer", "Web3", "React", "Next.js", "Portfolio", "Philippines"],
+  authors: [{ name: "Sean Michael Andrew B. Mendoza" }],
+  openGraph: {
+    title: "Sean Michael Andrew B. Mendoza | Full Stack Developer",
+    description: "Full Stack Developer, Web3 Developer, and Software Engineer based in the Philippines.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -19,10 +32,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={font.className}>
-      <body>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className="font-sans antialiased">
         <ThemeProvider>
-          <ClientLayout>  {children}</ClientLayout>
+          <ClientLayout>{children}</ClientLayout>
         </ThemeProvider>
       </body>
     </html>

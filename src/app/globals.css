@@ -1,41 +1,50 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fff;
-  --foreground: #333;
-  --card: #fff;
-  --card-foreground: #333;
-  --primary: #333;
-  --primary-foreground: #fff;
+  --background: #fafafa;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --primary: #1a1a1a;
+  --primary-foreground: #ffffff;
   --border: #e5e5e5;
-  --accent: #333;
-  --secondary: #bbb;
-  --muted: #666;
-  --muted-foreground: #666;
+  --accent: #f5f5f5;
+  --secondary: #a3a3a3;
+  --muted: #737373;
+  --muted-foreground: #737373;
+  --primary-rgb: 26, 26, 26;
 }
 
 .dark {
-  --background: #121212;
-  --foreground: #eee;
-  --card: #1e1e1e;
-  --card-foreground: #eee;
-  --primary: #fff;
-  --primary-foreground: #121212;
-  --border: #333;
-  --accent: #eee;
-  --secondary: #888;
-  --muted: #888;
-  --muted-foreground: #888;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #141414;
+  --card-foreground: #fafafa;
+  --primary: #fafafa;
+  --primary-foreground: #0a0a0a;
+  --border: #262626;
+  --accent: #1a1a1a;
+  --secondary: #a3a3a3;
+  --muted: #737373;
+  --muted-foreground: #a3a3a3;
+  --primary-rgb: 250, 250, 250;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
 }
 
 body {
@@ -101,13 +110,34 @@ html {
 .card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   padding: 1.5rem;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--primary) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .card:hover {
-  border-color: var(--primary);
+  border-color: rgba(var(--primary-rgb), 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover::before {
+  opacity: 0.03;
 }
 
 /* Skill card styles */
@@ -490,4 +520,143 @@ h1, h2, p {
 .interactive-text:hover {
   background: var(--card);
   border-radius: 4px;
+}
+
+/* Modern gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(var(--primary-rgb), 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--primary-rgb), 0.1);
+}
+
+/* Modern button styles */
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+/* Ensure Tailwind button classes work */
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.text-primary-foreground {
+  color: var(--primary-foreground) !important;
+}
+
+.border-border {
+  border-color: var(--border) !important;
+}
+
+.hover\:border-primary:hover {
+  border-color: var(--primary) !important;
+}
+
+/* Secondary button styles */
+.border-2 {
+  border-width: 2px !important;
+}
+
+/* Ensure proper button text colors */
+button {
+  color: var(--foreground);
+}
+
+button.bg-primary {
+  color: var(--primary-foreground) !important;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(var(--primary-rgb), 0.3);
+}
+
+/* Smooth scroll snap for sections */
+.scroll-snap-container {
+  scroll-snap-type: y proximity;
+}
+
+.scroll-snap-section {
+  scroll-snap-align: start;
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--card) 25%, var(--border) 50%, var(--card) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Glow effect on focus */
+input:focus, textarea:focus {
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+}
+
+/* Modern selection color */
+::selection {
+  background: rgba(var(--primary-rgb), 0.2);
+  color: var(--foreground);
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img[loading] {
+  opacity: 0;
+}
+
+img:not([loading]) {
+  opacity: 1;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
