@@ -639,17 +639,8 @@ input:focus, textarea:focus {
   color: var(--foreground);
 }
 
-/* Smooth image loading */
 img {
   transition: opacity 0.3s ease;
-}
-
-img[loading] {
-  opacity: 0;
-}
-
-img:not([loading]) {
-  opacity: 1;
 }
 
 /* Reduced motion support */

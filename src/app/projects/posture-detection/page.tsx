@@ -22,7 +22,7 @@ export default function PostureDetectionProject() {
         </p>
         <figure className="my-8">
           <Image src="/projects/Edgardo.png" alt="Edgardo Posture Example" width={640} height={480} className="rounded-lg border border-gray-700 mx-auto" />
-          <figcaption className="text-center text-sm text-gray-400 mt-2">Posture detection result: Edgardo</figcaption>
+          <figcaption className="text-center text-sm text-gray-400 mt-2">Posture detection result: Edgardo</figcaption> 
         </figure>
         <p>
           It is then of great importance to address these issues through education, ergonomic interventions, and exercise to promote proper alignment and mitigate the negative effects of poor posture on health and well-being.

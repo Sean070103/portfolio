@@ -153,7 +153,7 @@ export default function AboutPage() {
                 experiences for communities and startups in the local tech ecosystem.
               </p>
 
-              <p className="text-muted-foreground mb-8 leading-relaxed">
+               <p className="text-muted-foreground mb-8 leading-relaxed">
                 Beyond freelance work, I&apos;ve contributed to Web3 communities like Base PH and
                 Filipino Web3 Manila, and worked as a Software Engineer Intern at THE BLOKC and
                 an OJT intern at Creotec Inc. Philippines. With a strong foundation in React,
