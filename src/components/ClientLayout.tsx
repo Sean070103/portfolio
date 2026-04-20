@@ -16,25 +16,19 @@ export default function ClientLayout({
   return (
     <ThemeProvider>
       <div className="min-h-screen flex flex-col bg-background">
-        {/* Background pattern */}
+        {/* Monochrome grid background */}
         <div className="fixed inset-0 -z-50 overflow-hidden">
-          {/* Gradient mesh background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background" />
-          
-          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 bg-background" />
           <div 
-            className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]"
+            className="absolute inset-0 opacity-[0.08] dark:opacity-[0.14]"
             style={{
               backgroundImage: `
                 linear-gradient(var(--primary) 1px, transparent 1px),
                 linear-gradient(90deg, var(--primary) 1px, transparent 1px)
               `,
-              backgroundSize: '60px 60px'
+              backgroundSize: "28px 28px"
             }}
           />
-          
-          {/* Top gradient accent */}
-          <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-primary/5 to-transparent" />
         </div>
 
         <Navbar />

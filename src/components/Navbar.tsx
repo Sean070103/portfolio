@@ -82,8 +82,8 @@ export default function Navbar() {
           transition-all duration-500 ease-out
           ${
             isScrolled
-              ? "bg-background/80 backdrop-blur-md shadow-lg py-2"
-              : "bg-background/50 backdrop-blur-sm py-4"
+              ? "bg-background border-b-[3px] border-border py-2"
+              : "bg-background border-b-[3px] border-border py-4"
           }
         `}
       >
@@ -92,14 +92,14 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="relative group">
               <motion.span 
-                className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50"
+                className="text-xl font-black tracking-tight"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 SeanDev
               </motion.span>
               <motion.span 
-                className="absolute -bottom-1 left-0 h-0.5 bg-primary rounded-full"
+                className="absolute -bottom-1 left-0 h-1 bg-primary"
                 initial={{ width: 0 }}
                 whileHover={{ width: "100%" }}
                 transition={{ duration: 0.3 }}
@@ -141,7 +141,7 @@ export default function Navbar() {
               {/* Theme toggle */}
               <motion.button
                 onClick={toggleTheme}
-                className="p-2 rounded-lg bg-card hover:bg-card/80 transition-all duration-300 border border-border"
+                className="p-2 bg-card hover:bg-accent transition-all duration-300 border-[3px] border-border shadow-[4px_4px_0_var(--border)]"
                 aria-label="Toggle theme"
                 whileHover={{ scale: 1.1, rotate: 15 }}
                 whileTap={{ scale: 0.9 }}
@@ -179,7 +179,7 @@ export default function Navbar() {
 
               {/* Mobile menu button */}
               <motion.button
-                className="md:hidden p-2 rounded-lg hover:bg-card transition-all duration-300"
+                className="md:hidden p-2 border-[3px] border-border bg-card hover:bg-accent transition-all duration-300 shadow-[4px_4px_0_var(--border)]"
                 onClick={toggleMenu}
                 aria-label="Toggle menu"
                 whileTap={{ scale: 0.9 }}
@@ -219,7 +219,7 @@ export default function Navbar() {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              className="fixed inset-0 bg-background/60 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 bg-background/70 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -234,7 +234,7 @@ export default function Navbar() {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              className="fixed top-14 right-0 h-[calc(100vh-3.5rem)] w-72 bg-background/95 backdrop-blur-md border-l border-border shadow-2xl md:hidden"
+              className="fixed top-14 right-0 h-[calc(100vh-3.5rem)] w-72 bg-background border-l-[3px] border-border md:hidden"
               variants={mobileMenuVariants}
               initial="closed"
               animate="open"
@@ -255,11 +255,11 @@ export default function Navbar() {
                       href={link.href}
                       className={`
                         block w-full text-left px-4 py-3 
-                        rounded-lg transition-all duration-300
+                        border-[3px] border-border transition-all duration-300
                         ${
                           pathname === link.href
-                            ? "bg-primary/10 text-primary border-l-2 border-primary"
-                            : "hover:bg-card hover:pl-6"
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-card hover:bg-accent hover:pl-6"
                         }
                       `}
                       onClick={toggleMenu}

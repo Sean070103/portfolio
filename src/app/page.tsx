@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Code2, Palette, Blocks, ExternalLink } from "lucide-react";
 
@@ -204,10 +205,12 @@ export default function Home() {
                   
                   {/* Main image */}
                   <div className="absolute inset-4 rounded-full overflow-hidden border-4 border-primary/20 bg-card shadow-2xl">
-                    <img
+                    <Image
                       src="/seanie.png"
                       alt="Sean Michael Andrew B. Mendoza"
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 384px"
+                      className="object-cover"
                     />
                   </div>
 
@@ -310,10 +313,12 @@ export default function Home() {
               >
                 {/* Image */}
                 <div className="relative h-52 overflow-hidden">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   

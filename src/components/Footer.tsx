@@ -29,9 +29,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-auto border-t border-border bg-card/50 backdrop-blur-sm">
+    <footer className="relative mt-auto border-t-[3px] border-border bg-card">
       {/* Top decorative line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-primary" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main footer content */}
@@ -45,7 +45,7 @@ export default function Footer() {
             transition={{ duration: 0.5 }}
           >
             <Link href="/" className="inline-block">
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
+              <span className="text-2xl font-black tracking-tight">
                 SeanDev
               </span>
             </Link>
@@ -97,7 +97,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="p-2.5 rounded-lg bg-background border border-border hover:border-primary/50 hover:bg-primary/5 transition-all"
+                  className="p-2.5 bg-background border-[3px] border-border hover:bg-accent transition-all shadow-[4px_4px_0_var(--border)]"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -129,7 +129,7 @@ export default function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 border-[3px] border-border px-3 py-1 bg-background">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               Available for work
             </span>

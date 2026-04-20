@@ -1,33 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #1a1a1a;
+  --background: #f8f8f8;
+  --foreground: #0c0c0c;
   --card: #ffffff;
-  --card-foreground: #1a1a1a;
-  --primary: #1a1a1a;
+  --card-foreground: #0c0c0c;
+  --primary: #0c0c0c;
   --primary-foreground: #ffffff;
-  --border: #e5e5e5;
-  --accent: #f5f5f5;
-  --secondary: #a3a3a3;
-  --muted: #737373;
-  --muted-foreground: #737373;
-  --primary-rgb: 26, 26, 26;
+  --border: #0c0c0c;
+  --accent: #ececec;
+  --secondary: #5c5c5c;
+  --muted: #5c5c5c;
+  --muted-foreground: #5c5c5c;
+  --primary-rgb: 12, 12, 12;
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #fafafa;
-  --card: #141414;
-  --card-foreground: #fafafa;
-  --primary: #fafafa;
-  --primary-foreground: #0a0a0a;
-  --border: #262626;
-  --accent: #1a1a1a;
-  --secondary: #a3a3a3;
-  --muted: #737373;
-  --muted-foreground: #a3a3a3;
-  --primary-rgb: 250, 250, 250;
+  --background: #0b0b0b;
+  --foreground: #f2f2f2;
+  --card: #121212;
+  --card-foreground: #f2f2f2;
+  --primary: #f2f2f2;
+  --primary-foreground: #0b0b0b;
+  --border: #f2f2f2;
+  --accent: #1b1b1b;
+  --secondary: #bbbbbb;
+  --muted: #bbbbbb;
+  --muted-foreground: #bbbbbb;
+  --primary-rgb: 242, 242, 242;
 }
 
 @theme inline {
@@ -51,6 +51,11 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
 }
 
 h1,
@@ -109,12 +114,13 @@ html {
 /* Card styles */
 .card {
   background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 1rem;
+  border: 3px solid var(--border);
+  border-radius: 0;
   padding: 1.5rem;
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   overflow: hidden;
+  box-shadow: 6px 6px 0 var(--border);
 }
 
 .card::before {
@@ -131,9 +137,9 @@ html {
 }
 
 .card:hover {
-  border-color: rgba(var(--primary-rgb), 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-color: var(--border);
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0 var(--border);
 }
 
 .card:hover::before {
@@ -143,18 +149,19 @@ html {
 /* Skill card styles */
 .skill-card {
   background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
+  border: 3px solid var(--border);
+  border-radius: 0;
   padding: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   transition: all 0.2s ease;
+  box-shadow: 5px 5px 0 var(--border);
 }
 
 .skill-card:hover {
   border-color: var(--primary);
-  transform: translateY(-2px);
+  transform: translate(-2px, -2px);
 }
 
 @keyframes blink {
@@ -581,6 +588,53 @@ button {
 
 button.bg-primary {
   color: var(--primary-foreground) !important;
+}
+
+/* Neo-brutalist global shape language */
+.rounded, .rounded-md, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-3xl, .rounded-full {
+  border-radius: 0 !important;
+}
+
+.border, .border-2 {
+  border-width: 3px !important;
+}
+
+.shadow-lg, .shadow-xl, .shadow-2xl {
+  box-shadow: 8px 8px 0 var(--border) !important;
+}
+
+button,
+[type="button"],
+[type="submit"] {
+  border: 3px solid var(--border);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 var(--border);
+}
+
+button:hover,
+[type="button"]:hover,
+[type="submit"]:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0 var(--border);
+}
+
+input, textarea {
+  border-width: 3px !important;
+  border-radius: 0 !important;
+}
+
+.bg-gradient-to-r,
+.bg-gradient-to-l,
+.bg-gradient-to-t,
+.bg-gradient-to-b,
+.bg-gradient-to-tr,
+.bg-gradient-to-br {
+  background-image: none !important;
+}
+
+.bg-clip-text.text-transparent {
+  color: var(--foreground) !important;
+  -webkit-text-fill-color: var(--foreground) !important;
 }
 
 .btn-primary::before {

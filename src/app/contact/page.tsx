@@ -138,9 +138,9 @@ export default function ContactPage() {
                     <div className="p-2 sm:p-3 bg-primary/10 rounded-lg sm:rounded-xl group-hover:bg-primary/20 transition-colors">
                       <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs sm:text-sm text-muted-foreground">{item.label}</p>
-                      <p className="text-sm sm:text-base font-medium">{item.value}</p>
+                      <p className="text-sm sm:text-base font-medium break-all leading-tight">{item.value}</p>
                     </div>
                   </motion.a>
                 ))}
