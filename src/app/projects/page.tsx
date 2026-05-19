@@ -17,6 +17,7 @@ type Project = {
   url: string;
   tech: Tech[];
   featured?: boolean;
+  imageCover?: boolean;
 };
 
 const projects: Project[] = [
@@ -129,6 +130,81 @@ const projects: Project[] = [
       { icon: <SiTailwindcss size={20} />, name: "Tailwind CSS" },
     ],
   },
+  {
+    title: "EIGEL Management Consulting",
+    description:
+      "QMS-certified consulting site for ISO certifications, environmental management, training, and feasibility studies across the Philippines.",
+    image: "/projects/eigel.png",
+    url: "https://eigel-kappa.vercel.app/",
+    tech: [
+      { icon: <SiNextdotjs size={20} />, name: "Next.js" },
+      { icon: <FaReact size={20} />, name: "React" },
+      { icon: <SiTailwindcss size={20} />, name: "Tailwind CSS" },
+    ],
+  },
+  {
+    title: "Team1 Philippines",
+    description:
+      "Avalanche community chapter site with identity-card branding, campus events, partners, and member verification for builders across the Philippines.",
+    image: "/projects/team1-ph.png",
+    url: "https://team1-ph.vercel.app/",
+    featured: true,
+    tech: [
+      { icon: <SiNextdotjs size={20} />, name: "Next.js" },
+      { icon: <FaReact size={20} />, name: "React" },
+      { icon: <SiTailwindcss size={20} />, name: "Tailwind CSS" },
+    ],
+  },
+  {
+    title: "SKYRANT TECH",
+    description:
+      "Agency portfolio for premium web development—services, team profiles, and showcased client work with a bold, performance-first aesthetic.",
+    image: "/projects/skyrant-tech.png",
+    url: "https://skyrant-tech-v2.vercel.app/",
+    featured: true,
+    tech: [
+      { icon: <SiNextdotjs size={20} />, name: "Next.js" },
+      { icon: <FaReact size={20} />, name: "React" },
+      { icon: <SiTailwindcss size={20} />, name: "Tailwind CSS" },
+    ],
+  },
+  {
+    title: "Team1 Philippines Hub",
+    description:
+      "Community hub with events, programs, member profiles, media kit downloads, and Luma-integrated event listings for Avalanche builders.",
+    image: "/projects/tm1-black.png",
+    url: "https://tm1-black.vercel.app/",
+    tech: [
+      { icon: <SiNextdotjs size={20} />, name: "Next.js" },
+      { icon: <FaReact size={20} />, name: "React" },
+      { icon: <SiTailwindcss size={20} />, name: "Tailwind CSS" },
+    ],
+  },
+  {
+    title: "John Michael P. Estevez",
+    description:
+      "Professional portfolio for an IT graduate and network administrator—experience, skills, education, and contact details.",
+    image: "/projects/jm-sigma.png",
+    url: "https://jm-sigma.vercel.app/",
+    tech: [
+      { icon: <SiNextdotjs size={20} />, name: "Next.js" },
+      { icon: <FaReact size={20} />, name: "React" },
+      { icon: <SiTailwindcss size={20} />, name: "Tailwind CSS" },
+    ],
+  },
+  {
+    title: "Alhea Jamie C. Barrameda",
+    description:
+      "Psychology student portfolio highlighting education, research awards, clinical skills, leadership experience, and seminars.",
+    image: "/projects/alhea-jamie.png",
+    url: "https://alhea-jamie-barrameda.vercel.app/",
+    imageCover: true,
+    tech: [
+      { icon: <SiNextdotjs size={20} />, name: "Next.js" },
+      { icon: <FaReact size={20} />, name: "React" },
+      { icon: <SiTailwindcss size={20} />, name: "Tailwind CSS" },
+    ],
+  },
 ];
 
 export default function ProjectsPage() {
@@ -201,7 +277,11 @@ export default function ProjectsPage() {
                     alt={project.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    className={
+                      project.imageCover
+                        ? "object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                        : "object-contain object-top p-2 transition-transform duration-700 group-hover:scale-[1.02]"
+                    }
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
@@ -266,13 +346,17 @@ export default function ProjectsPage() {
                 whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <motion.div className="relative h-48 overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    className={
+                      project.imageCover
+                        ? "object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                        : "object-contain object-top p-2 transition-transform duration-500 group-hover:scale-[1.02]"
+                    }
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   
@@ -285,7 +369,7 @@ export default function ProjectsPage() {
                       View <ExternalLink className="w-3 h-3" />
                     </span>
                   </motion.div>
-                </div>
+                </motion.div>
 
                 {/* Content */}
                 <div className="p-5">

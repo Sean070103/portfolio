@@ -99,10 +99,10 @@ export default function AboutPage() {
                 {/* Main image container */}
                 <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border-2 border-border">
                   <Image
-                    src="/bebe.jpg"
+                    src="/seanie.png"
                     alt="Sean Michael Andrew B. Mendoza"
                     fill
-                    className="object-cover"
+                    className="object-contain object-center"
                     priority
                   />
                   

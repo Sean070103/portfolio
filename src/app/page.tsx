@@ -204,15 +204,15 @@ export default function Home() {
                   />
                   
                   {/* Main image */}
-                  <div className="absolute inset-4 rounded-full overflow-hidden border-4 border-primary/20 bg-card shadow-2xl">
+                  <motion.div className="absolute inset-4 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
                     <Image
                       src="/seanie.png"
                       alt="Sean Michael Andrew B. Mendoza"
                       fill
                       sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 384px"
-                      className="object-cover"
+                      className="object-contain object-center"
                     />
-                  </div>
+                  </motion.div>
 
                   {/* Floating badges */}
                   <motion.div
@@ -312,13 +312,13 @@ export default function Home() {
                 whileHover={{ y: -5, boxShadow: "0 25px 50px rgba(0,0,0,0.15)" }}
               >
                 {/* Image */}
-                <div className="relative h-52 overflow-hidden">
+                <motion.div className="relative h-52 overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="object-contain object-top p-2 transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   
@@ -329,7 +329,7 @@ export default function Home() {
                   >
                     <ExternalLink className="w-4 h-4" />
                   </motion.div>
-                </div>
+                </motion.div>
 
                 {/* Content */}
                 <div className="p-6">
