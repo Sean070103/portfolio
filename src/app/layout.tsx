@@ -1,27 +1,37 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
-import ClientLayout from "@/components/ClientLayout";
+import ClientLayout from "@/components/layout/ClientLayout";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-playfair",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Sean Michael Andrew B. Mendoza | Full Stack Developer",
-  description: "Portfolio website of Sean Michael Andrew B. Mendoza - Full Stack Developer, Web3 Developer, and Software Engineer based in the Philippines.",
-  keywords: ["Full Stack Developer", "Web3", "React", "Next.js", "Portfolio", "Philippines"],
+  title: "SeanDev — Full Stack Developer",
+  description:
+    "Portfolio of Sean Michael Andrew B. Mendoza — Full Stack Developer crafting premium web applications and digital products.",
+  keywords: [
+    "Full Stack Developer",
+    "Next.js",
+    "React",
+    "Portfolio",
+    "Philippines",
+  ],
   authors: [{ name: "Sean Michael Andrew B. Mendoza" }],
   openGraph: {
-    title: "Sean Michael Andrew B. Mendoza | Full Stack Developer",
-    description: "Full Stack Developer, Web3 Developer, and Software Engineer based in the Philippines.",
+    title: "SeanDev — Full Stack Developer",
+    description:
+      "Premium web applications and editorial digital experiences.",
     type: "website",
   },
 };
@@ -32,7 +42,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html
+      lang="en"
+      className={`dark ${inter.variable} ${playfair.variable}`}
+      suppressHydrationWarning
+    >
       <body className="font-sans antialiased">
         <ThemeProvider>
           <ClientLayout>{children}</ClientLayout>
